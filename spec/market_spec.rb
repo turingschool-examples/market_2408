@@ -13,6 +13,11 @@ RSpec.describe Market do
         expect(@market).to be_an_instance_of(Market)
     end
 
+    it 'can return the market name' do
+
+        expect(@market.name).to eq("South Pearl Street Farmers Market")
+    end
+    
     it 'can list all vendors in the market' do
 
         expect(@market.vendors).to eq([])

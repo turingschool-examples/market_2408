@@ -1,4 +1,4 @@
-require './spec_helper'
+require 'spec_helper'
 
 RSpec.describe Item do
   before(:each) do
@@ -15,14 +15,11 @@ RSpec.describe Item do
     it 'has a name' do
       expect(@peach.name).to eq("Peach")
       expect(@tomato.name).to eq("Tomato")
-      expect(@tomato.name).to !eq("Tom")
-
     end
 
     it 'has a price' do
-      expect(@peach.price).to eq(.75)
-      expect(@tomato.price).to eq(.5)
-      expect(@peach.price).to !eq(.5)
+      expect(@peach.price).to eq(0.75)
+      expect(@tomato.price).to eq(0.5)
     end
   end
 

@@ -9,5 +9,7 @@ class Vendor
         @inventory[item] || 0 
     end
 
-    
+    def stock(item, quantity)
+        @inventory[item] = (@inventory[item] || 0 )+ quantity
+    end
 end

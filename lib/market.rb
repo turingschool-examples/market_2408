@@ -18,5 +18,10 @@ class Market
 
   def vendors_that_sell(item)
     # todo
+    list = []
+    @vendors.find_all do |vendor|
+      list << vendor if vendor.check_stock(item).to_i > 0
+    end
+    list
   end
 end

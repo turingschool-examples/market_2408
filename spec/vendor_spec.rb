@@ -1,5 +1,5 @@
 require 'spec_helper'
-RSpec.describe Item do 
+RSpec.describe Vendor do 
     before(:each) do
         @vendor1 = Vendor.new("Rocky Mountain Fresh")
         @vendor2 = Vendor.new("Palisade Peach Shack")

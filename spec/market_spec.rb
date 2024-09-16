@@ -78,6 +78,12 @@ RSpec.describe Market do
 
         expect(@market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
 
-    end
+        expected = {
+            @item1 => { quantity: 100, vendors: ["Rocky Mountain Fresh", "Palisade Peach Shack"] },
+            @item2 => { quantity: 7, vendors: ["Rocky Mountain Fresh"] }
+          }
+      
+          expect(@market.total_inventory).to include(expected)
+        end
 
 end

@@ -31,5 +31,22 @@ end
         all_item_names.uniq.sort  
     end
 
-    def 
+    def total_inventory
+        inventory = {}
+        vendors.each do |vendor|
+        vendor.inventory.each do |item, quantity|
+         
+            if inventory[item]
+                inventory[item][:quantity] += quantity
+                inventory[item][:vendors] << vendor.name unless inventory[item][:vendors].include?(vendor.name)
+            else
+                inventory[item] = {
+                  quantity: quantity,
+                  vendors: [vendor.name]
+                    }
+              end
+            end
+          end
+          inventory 
+        end
 end

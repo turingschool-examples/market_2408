@@ -44,7 +44,7 @@ RSpec.describe Market do
             expect(@market.vendors).to eq([@vendor1, @vendor2, @vendor3])
         end
 
-        it 'identifies the names of vendors' do
+        it 'stores vendor names in an array' do
             expect(@market.vendor_names).to eq(["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"])
         end
     end

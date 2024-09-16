@@ -23,10 +23,8 @@ class Vendor
 
     def potential_revenue
         potential_revenue = 0
-                # require 'pry'; binding.pry
         if @inventory.length > 0
             @inventory.each do |item, quantity|
-                # require 'pry'; binding.pry
                 potential_revenue += item.price * quantity
             end
             potential_revenue

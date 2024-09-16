@@ -9,7 +9,6 @@ class Market
 
   def add_vendor(vendor)
     @vendors << vendor
-    # todo
   end
 
   def vendor_names

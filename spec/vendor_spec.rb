@@ -52,4 +52,23 @@ RSpec.describe Vendor do
             expect(@vendor_1.check_stock(@item_1)).to eq(30)
         end
     end
+
+    describe '#potential revenue' do
+        it 'can return potential revenue when there is none' do
+            expect(@vendor_1.potential_revenue).to eq(0)
+        end
+
+        it 'can return potential revenue when there is one item' do
+            expect(@vendor_1.potential_revenue).to eq(0)
+            @vendor_1.stock(@item_1,10)
+            expect(@vendor_1.potential_revenue).to eq(7.50)
+        end
+
+        it 'can return potential revenue when there is multiple' do
+            expect(@vendor_1.potential_revenue).to eq(0)
+            @vendor_1.stock(@item_1,10)
+            @vendor_1.stock(@item_2,3)
+            expect(@vendor_1.potential_revenue).to eq(10.50)
+        end
+    end
 end

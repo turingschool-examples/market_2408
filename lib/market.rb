@@ -20,7 +20,6 @@ class Market
     end
 
     def vendors_that_sell(item)
-        #vendors_that_sell = []
         @vendors.find_all do |vendor|
             vendor.inventory.key?(item)
         end

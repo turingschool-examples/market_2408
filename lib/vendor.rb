@@ -1,6 +1,7 @@
 class Vendor
   
     attr_reader :name, :inventory, :stock
+    attr_accessor :potential_revenue
 
     def initialize(name)
         @name = name
@@ -11,7 +12,16 @@ class Vendor
     @inventory[item]  
   end
 
-  def stock(item, quantity)
+  def stock(item, quantity) 
     @inventory[item] += quantity  
+  end
+
+  def potential_revenue
+    total_revenue = 0
+    @inventory.each do |item, quantity|
+      item_price = item.price.delete('$').to_f
+      total_revenue += item_price * quantity
+    end
+    total_revenue
   end
 end

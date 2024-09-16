@@ -1,6 +1,7 @@
 class Market
 
     attr_reader :name, :vendors
+    attr_accessor :potential_revenue
 
     def initialize(name)
         @name = name
@@ -22,6 +23,5 @@ class Market
           vendor.check_stock(item) > 0 
     end
 end
- 
-
+    
 end

@@ -12,10 +12,11 @@ RSpec.describe Market do
 
     @vendor1.stock(@peach, 25)
     @vendor1.stock(@tomato, 30)
+    @vendor1.stock(@bacon, 100)
 
     @vendor2.stock(@peach, 55)
     @vendor2.stock(@egg, 35)
-    @vendor2.stock(@bacon, 10)
+    @vendor2.stock(@bacon, 100)
 
     @market1 = Market.new("South Pearl Street Farmers Market")
     @market2 = Market.new("Farmer Joe's Emporium")
@@ -78,6 +79,29 @@ RSpec.describe Market do
       @market1.add_vendor(@vendor2)
 
       expect(@market1.vendors_that_sell(@peach)).to eq([@vendor1, @vendor2])
+    end
+  end
+
+  describe '#sorted_item_list' do
+    it 'can list all items sold by vendors in alpha order' do
+      @market1.add_vendor(@vendor1)
+      @market1.add_vendor(@vendor2)
+
+      expect(@market1.sorted_item_list).to eq(["Bacon", "Egg", "Peach", "Tomato"])
+    end
+  end
+
+  describe '#total_inventory' do #hash with items as keys and hashes as values - 
+                                #this sub-hash should have two key/value pairs: quantity pointing to total inventory for that item 
+                                #and vendors pointing to an array of the vendors that sell that item.
+    xit 'can report quatities of all items' do
+
+    end
+  end
+
+  describe '#overstocked_items' do
+    it 'can show if item is overstocked' do
+      expect(@market1.overstocked_items).to eq([@bacon, @peach])
     end
   end
 

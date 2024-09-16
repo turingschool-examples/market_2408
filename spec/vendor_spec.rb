@@ -16,3 +16,22 @@ RSpec.describe Item do
         expect(@vendor1.name).to eq ("Rocky Mountain Fresh")
         expect(@vendor2.name).to eq ("Sysco Systems")
     end
+
+    it '#has inventory' do 
+        expect(@vendor1.inventory).to eq([])
+        expect(@vendor2.inventory).to eq([])
+    end
+
+    it '#has stock' do 
+        expect(@vendor1.check_stock(@item1)).to eq(0)
+        expect(@vendor2.check_stock(@item1)).to eq(0)
+    end
+
+    it '#can stock items' do 
+        @vendor1.stock(@item1, 30)
+        expect(@vendor1.check_stock(@item1)).to eq(30)
+        expect(@vendor2.check_stock(@item1)).to eq(0)
+        @vendor1.stock(@item1, 25)
+        expect(@vendor1.check_stock(@item1)).to eq(55)
+        expect(@vendor2.check_stock(@item1)).to eq(0)
+    end

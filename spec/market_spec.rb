@@ -91,17 +91,12 @@ RSpec.describe Market do
     end
   end
 
-  describe '#total_inventory' do #hash with items as keys and hashes as values - 
-                                #this sub-hash should have two key/value pairs: quantity pointing to total inventory for that item 
-                                #and vendors pointing to an array of the vendors that sell that item.
-    xit 'can report quatities of all items' do
-
-    end
-  end
-
   describe '#overstocked_items' do
     it 'can show if item is overstocked' do
-      expect(@market1.overstocked_items).to eq([@bacon, @peach])
+      @market1.add_vendor(@vendor1)
+      @market1.add_vendor(@vendor2)
+
+      expect(@market1.overstocked_items).to eq([@peach, @bacon])
     end
   end
 

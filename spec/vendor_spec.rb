@@ -28,4 +28,11 @@ RSpec.describe Vendor do
         @vendor.stock(@item1, 25)
         expect(@vendor.check_stock(@item1)).to eq(55)
     end
-    
+
+    it 'stocks multiple items'do
+        @vendor.stock(@item1, 30)
+        @vendor.stock(@item2, 12)
+
+        expect(@vendor.inventory).to eq({@item1 => 30, @item2 => 12})
+    end
+end

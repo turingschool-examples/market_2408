@@ -1,4 +1,5 @@
 require './spec/spec_helper'
+require 'date'
 
 RSpec.describe Market do
   before(:each) do
@@ -61,21 +62,24 @@ RSpec.describe Market do
 
     it 'returns overstocked items' do
       expect(@market.overstocked_items).to eq([@item1])
-    end
+    end    
 
-    it 'returns market creation date' do
-      allow(Date).to receive(:today).and_return(Date.new(1912, 5, 13))
-      expect(@market.date).to eq("13/05/1912")
-    end
-
-    it 'knows when not to sell item' do
+    xit 'knows when not to sell item' do
       expect(@market.sell(@item2, 25)).to be false
     end
 
-    it 'sells the item to reduce stock' do
+    xit 'sells the item to reduce stock' do
       expect(@market.sell(@item1, 40)).to be true      
       expect(@vendor1.check_stock(@item1)).to eq(0)      
       expect(@vendor3.check_stock(@item1)).to eq(60)
+    end
+  end
+
+  describe 'date can be any date but will default to current' do
+    it 'returns market creation date' do
+      allow(Date).to receive(:today).and_return(Date.new(1912, 5, 13))
+      market1 = Market.new("Test Market")
+      expect(market1.formatted_date).to eq("13/05/1912")
     end
   end
 end

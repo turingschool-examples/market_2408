@@ -37,11 +37,11 @@ class Market
     def overstocked_items
         item_totals ={}
         @vendors.each do |vendor|
-            vendor.inventory.each do |item|
-               if item_totals[item[0]] == nil
-                item_totals[item[0]] = item[1]
+            vendor.inventory.each do |item,quantity|
+               if item_totals[item] == nil
+                item_totals[item] = quantity
                else
-                item_totals[item[0]] += item[1]
+                item_totals[item] += quantity
                end
             end
         end
@@ -52,5 +52,20 @@ class Market
            end
         end
         items_above
+    end
+
+    def total_inventory
+        inventory = {}
+        @vendors.each do |vendor|
+            vendor.inventory.each do |item, quantity|
+                if inventory[item] == nil
+                    inventory[item] = {total_quantity: quantity,vendors:[vendor]}
+                else
+                    inventory[item][:total_quantity] += quantity
+                    inventory[item][:vendors] <<vendor
+                end
+            end
+        end
+        inventory
     end
 end

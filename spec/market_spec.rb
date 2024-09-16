@@ -85,4 +85,18 @@ RSpec.describe Market do
         end
     end
 
+    describe "#total_inventory" do
+        it "can give total inventory by item and vendor" do
+            @market.add_vendor(@vendor1)
+            @market.add_vendor(@vendor2)
+            @market.add_vendor(@vendor3)
+
+            expect(@market.total_inventory.class).to eq(Hash)
+            expect(@market.total_inventory[@item1].class).to eq(Hash)
+            expect(@market.total_inventory[@item1].keys).to eq([:total_quantity,:vendors])
+            expect(@market.total_inventory[@item1][:total_quantity]).to eq(100)
+
+        end
+    end
+
 end

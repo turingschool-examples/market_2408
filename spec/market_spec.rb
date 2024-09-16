@@ -58,10 +58,10 @@ RSpec.describe Market do
   describe '#vendor_names' do
     it 'can list vendors names' do
       @market1.add_vendor(@vendor1)
-      expect(@market1.vendor_names).to eq(["South Pearl Street Farmers Market"])
+      expect(@market1.vendor_names).to eq(["Rocky Mountain Fresh"])
 
       @market1.add_vendor(@vendor2)
-      expect(@market1.vendors).to eq(["South Pearl Street Farmers Market", "Bob's Fish Market"])
+      expect(@market1.vendor_names).to eq(["Rocky Mountain Fresh", "Bob's Fish Market"])
     end
   end
 

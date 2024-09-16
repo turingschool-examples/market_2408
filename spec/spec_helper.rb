@@ -1,2 +1,2 @@
 require './lib/item'
-# require './lib/vendor'
+require './lib/vendor'

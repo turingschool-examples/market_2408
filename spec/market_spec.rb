@@ -58,6 +58,10 @@ RSpec.describe Market do
       }
       expect(@market.total_inventory).to eq(actual_inventory)
     end
+
+    it 'returns overstocked items' do
+      expect(@market.overstocked_items).to eq([@item1])
+    end
   end
 
 

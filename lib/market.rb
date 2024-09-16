@@ -1,10 +1,14 @@
+require 'date'
+
 class Market
   attr_reader :name,
-              :vendors
+              :vendors,
+              :date
 
-  def initialize(name)
+  def initialize(name, date = Date.today)
     @name = name
     @vendors = []
+    @date = date
   end
 
   def add_vendor(vendor)
@@ -48,5 +52,9 @@ class Market
     total_inventory.each_with_object([]) do |(item, data), overstock|
       overstock << item if overstocked?(data)
     end   
+  end 
+  
+  def formatted_date
+    @date.strftime("%d/%m/%Y")
   end
 end

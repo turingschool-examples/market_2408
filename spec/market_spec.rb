@@ -95,4 +95,27 @@ RSpec.describe Market do
             expect(@market_1.sorted_item_list).to eq([@item4,@item1,@item3,@item2])        
         end
     end
+
+    describe '#overstocked items' do
+        it 'can return an empty array if there are no overstocked items' do
+            @market_1.add_vendor(@vendor1)
+            @market_1.add_vendor(@vendor2)
+            expect(@market_1.overstocked_items).to eq([])
+        end
+        it 'can return an array if there are multiple overstocked items by one seller' do
+            @market_1.add_vendor(@vendor1)
+            @market_1.add_vendor(@vendor2)
+            expect(@market_1.overstocked_items).to eq([])
+            @vendor1.stock(@item5, 55)
+            expect(@market_1.overstocked_items).to eq([@item5])
+        end
+        it 'can return an array if there are multiple overstocked items by two sellers' do
+            @market_1.add_vendor(@vendor1)
+            @market_1.add_vendor(@vendor2)
+            expect(@market_1.overstocked_items).to eq([])
+            @vendor1.stock(@item5, 55)
+            @vendor2.stock(@item1, 25)
+            expect(@market_1.overstocked_items).to eq([@item1,@item5])
+        end
+    end
 end

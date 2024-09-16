@@ -36,4 +36,22 @@ class Market
             end
         items.sort_by{ |item| item.name }
     end
+
+    def overstocked_items
+        items = Hash.new(0)
+        @vendors.each do |vendor|
+            if vendor.inventory.length > 0
+                vendor.inventory.each do |item, quantity|
+                    items[item] += quantity
+                end
+            end
+        end
+        overstocked_items = []
+        items.each do |item, quantity|
+            if quantity > 50
+                overstocked_items << item
+            end
+        end
+        overstocked_items.sort_by{ |item| item.name }
+    end
 end

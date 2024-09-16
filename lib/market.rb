@@ -19,4 +19,8 @@ class Market
             vendor.inventory.include?(item)
         end
     end
+
+    def sorted_item_list
+        vendors.flat_map { |vendor| vendor.inventory.keys.map(&:name)}.uniq.sort
+    end
 end

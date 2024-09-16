@@ -23,4 +23,20 @@ class Market
     def sorted_item_list
         vendors.flat_map { |vendor| vendor.inventory.keys.map(&:name)}.uniq.sort
     end
+
+    def total_inventory
+        all_inventory = {}
+
+        @vendors.each do |vendor|
+            vendor.inventory.each do |item, quantity|
+                if all_inventory[item]
+                    all_inventory[item][:quantity] += quantity
+                    all_inventory[item][:vendors] << vendor.name unless all_inventory[item][:vendors].include?(vendor.name)
+                else
+                    all_inventory[item] = {quantity: quantity, vendors: [vendor.name]}
+                end
+            end
+        end
+    all_inventory
+    end
 end

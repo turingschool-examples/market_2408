@@ -20,4 +20,10 @@ class Market
         @vendors.select { |vendor| vendor.check_stock(item) > 0}
     end
 
+    def potential_revenue
+        @inventory.sum do |item, quantity|
+            item.price * quantity
+        end
+    end
+
 end

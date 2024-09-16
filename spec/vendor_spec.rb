@@ -18,8 +18,8 @@ RSpec.describe Item do
     end
 
     it '#has inventory' do 
-        expect(@vendor1.inventory).to eq([])
-        expect(@vendor2.inventory).to eq([])
+        expect(@vendor1.inventory).to eq({})
+        expect(@vendor2.inventory).to eq({})
     end
 
     it '#has stock' do 

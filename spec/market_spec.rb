@@ -25,6 +25,9 @@ RSpec.describe Market do
             expect(@market).to be_an_instance_of(Market)
             expect(@market.name).to eq("South Pearl Street Farmers Market")
             expect(@market.vendors).to eq([])
+        
+            allow(@market).to receive(:date).and_return("24/02/2023")
+            expect(@market.date).to eq("24/02/2023")
         end
     end
 

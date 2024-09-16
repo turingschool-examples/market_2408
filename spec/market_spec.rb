@@ -50,13 +50,14 @@ RSpec.describe Market do
     end
 
     it 'knows total market inventory' do
-      actual_inventory{
+      actual_inventory = {
         @item1 => { quantity: 100, vendors: [@vendor1, @vendor3] },
         @item2 => { quantity: 9, vendors: [@vendor1] },
         @item3 => { quantity: 13, vendors: [@vendor3] },
         @item4 => { quantity: 50, vendors: [@vendor2] }
       }
       expect(@market.total_inventory).to eq(actual_inventory)
+    end
   end
 
 

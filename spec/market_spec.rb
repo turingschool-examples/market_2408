@@ -81,4 +81,18 @@ RSpec.describe Market do
             expect(@market_1.vendors_that_sell(@item1)).to eq([@vendor1, @vendor2])
         end
     end
+
+    describe '#sorted_item_list' do
+        it 'can return an array if there are no duplicate items' do
+            @market_1.add_vendor(@vendor1)
+            @market_1.add_vendor(@vendor2)
+            expect(@market_1.sorted_item_list).to eq([@item4,@item1,@item3,@item2])
+        end
+        it 'can return an array if there multiple vendors that sell an item' do
+            @market_1.add_vendor(@vendor1)
+            @market_1.add_vendor(@vendor2)
+            @vendor2.stock(@item1, 5)
+            expect(@market_1.sorted_item_list).to eq([@item4,@item1,@item3,@item2])        
+        end
+    end
 end

@@ -24,4 +24,16 @@ class Market
             vendor.inventory.key?(item)
         end
     end
+
+    def sorted_item_list
+        items = []
+            vendors.each do |vendor|
+                vendor.inventory.each do |item, quantity|
+                    if !items.include?(item)
+                        items << item
+                    end
+                end
+            end
+        items.sort_by{ |item| item.name }
+    end
 end

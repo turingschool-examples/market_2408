@@ -11,6 +11,7 @@ RSpec.describe Market do
         @item2 = Item.new({name: 'Tomato', price: "$0.50"})
         @item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
         @item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
+        @item5 = Item.new({name: "Plum", price: "$0.25"})
         @vendor1.stock(@item1, 35)
         @vendor1.stock(@item2, 7)
         @vendor2.stock(@item4, 50)
@@ -55,6 +56,29 @@ RSpec.describe Market do
             @market_1.add_vendor(@vendor1)
             @market_1.add_vendor(@vendor2)
             expect(@market_1.vendor_names).to eq([@vendor1.name, @vendor2.name])
+        end
+    end
+
+    describe '#vendors_that_sell' do
+        it 'can return an empty array when there are no vendors' do
+            expect(@market_1.vendors_that_sell(@item1)).to eq([])
+        end
+        it 'can return an empty array when there are are vendors but none sell the item' do
+            @market_1.add_vendor(@vendor1)
+            expect(@market_1.vendors_that_sell(@item4)).to eq([])
+        end
+        it 'can return an array of vendors when there are is one vendor' do
+            expect(@market_1.vendors_that_sell(@item1)).to eq([])
+            @market_1.add_vendor(@vendor1)
+            @market_1.add_vendor(@vendor2)
+            expect(@market_1.vendors_that_sell(@item1)).to eq([@vendor1])
+        end
+        it 'can return an array of vendors when there are multiple vendors' do
+            expect(@market_1.vendors_that_sell(@item1)).to eq([])
+            @market_1.add_vendor(@vendor1)
+            @market_1.add_vendor(@vendor2)
+            @vendor2.stock(@item1, 10)
+            expect(@market_1.vendors_that_sell(@item1)).to eq([@vendor1, @vendor2])
         end
     end
 end

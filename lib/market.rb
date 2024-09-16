@@ -18,4 +18,11 @@ class Market
         end
         vendor_names
     end
+
+    def vendors_that_sell(item)
+        #vendors_that_sell = []
+        @vendors.find_all do |vendor|
+            vendor.inventory.key?(item)
+        end
+    end
 end

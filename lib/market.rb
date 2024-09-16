@@ -32,8 +32,11 @@ class Market
             inventory[item][:quantity] += details[:quantity]
             inventory[item][:vendors] << vendor unless inventory[item][:vendors].include?(vendor)
           end
-        end
-      
+        end     
         inventory
-      end
+    end
+
+    def overstocked_items(threshold = 50)
+        total_inventory.select { |item, details| details[:quantity] >= threshold }
+    end
 end

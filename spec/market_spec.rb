@@ -69,7 +69,7 @@ RSpec.describe Market do
         @market.add_vendor(@vendor1)
         @market.add_vendor(@vendor2)
         @market.add_vendor(@vendor3)
-        
+
         expected = {
           @item1 => { quantity: 100, vendors: [@vendor1, @vendor3] },
           @item2 => { quantity: 7, vendors: [@vendor1] },
@@ -77,6 +77,19 @@ RSpec.describe Market do
           @item4 => { quantity: 50, vendors: [@vendor2] }
         }
         expect(@market.total_inventory).to eq(expected)
-      end
+    end
+
+    it 'returns overstocked items' do
+        @market.add_vendor(@vendor1)
+        @market.add_vendor(@vendor2)
+        @market.add_vendor(@vendor3)
+        
+        expected = {
+          @item1 => { quantity: 100, vendors: [@vendor1, @vendor3] },
+          @item4 => { quantity: 50, vendors: [@vendor2] }
+        }
+        
+        expect(@market.overstocked_items).to eq(expected)
+    end
 end
 

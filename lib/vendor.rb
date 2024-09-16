@@ -16,4 +16,13 @@ class Vendor
     return 0 unless @inventory.include?(item)
     @inventory[item]
   end
+
+  def potential_revenue
+    revenue = 0
+    @inventory.each do |item, amount|
+      revenue += (item.price * amount)
+    end
+    revenue
+
+  end
 end

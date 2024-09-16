@@ -10,4 +10,15 @@ class Market
     def add_vendor(vendor_param)
         @vendors << vendor_param
     end
+
+    def vendor_names
+        @vendors.map {|vendor| vendor.name}
+    end
+
+    def vendors_that_sell(item_param)
+        @vendors.find_all{|vendor| vendor.inventory.include?(item_param)}
+    end
+
+    def potential_revenue
+    end
 end

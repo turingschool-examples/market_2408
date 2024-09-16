@@ -41,4 +41,20 @@ RSpec.describe Market do
             expect(@market_1.vendors).to eq([@vendor1, @vendor2])
         end
     end
+
+    describe '#vendor_names' do
+        it "can return vendor_names if there are no vendors" do
+            expect(@market_1.vendor_names).to eq([])
+        end
+
+        it "can return vendor_names if there is one vendor" do
+            @market_1.add_vendor(@vendor1)
+            expect(@market_1.vendor_names).to eq([@vendor1.name])
+        end
+        it "can return vendor_names if there are multiple vendors" do
+            @market_1.add_vendor(@vendor1)
+            @market_1.add_vendor(@vendor2)
+            expect(@market_1.vendor_names).to eq([@vendor1.name, @vendor2.name])
+        end
+    end
 end

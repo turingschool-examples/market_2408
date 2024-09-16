@@ -18,4 +18,14 @@ class Market
     def vendors_that_sell(item_param)
         @vendors.find_all{|vendor| vendor.inventory.include?(item_param)}
     end
+
+    def overstocked_items
+        total_inventory = []
+        @vendors.each do |vendor|
+            vendor.inventory.each do |item, quantity|
+                total_inventory << item
+                total_inventory << quantity
+            end
+        end
+    end 
 end

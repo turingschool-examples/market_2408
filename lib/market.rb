@@ -26,4 +26,18 @@ class Market
 
     list_items.uniq.sort
   end
+
+  def total_inventory
+    inventory_list = Hash.new { |hash, key| hash[key] = { quantity: 0, vendors: [] } }
+
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, quantity|
+        inventory_list[item][:quantity] += quantity
+        inventory_list[item][:vendors] << vendor
+      end
+    end
+
+    inventory_list
+  end
+  
 end

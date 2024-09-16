@@ -29,4 +29,14 @@ class Market
     end
   end
 
+  def revenue_by_item
+    price = item.price
+    amount = vendor.inventory.value
+    price * amount
+  end
+
+  def potential_revenue
+    price = item.price
+    amount = vendor.inventory.value
+  end
 end

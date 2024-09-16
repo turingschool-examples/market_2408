@@ -21,8 +21,8 @@ class Market
     def vendors_that_sell(item)
         vendors.select do |vendor|
           vendor.check_stock(item) > 0 
+        end
     end
-end
 
     def sorted_item_list
         all_item_names = vendors.flat_map do |vendor|
@@ -46,8 +46,8 @@ end
                     }
               end
             end
-          end
-          inventory 
+        end
+            inventory 
         end
 
     def overstocked_items

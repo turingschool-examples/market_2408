@@ -86,6 +86,5 @@ RSpec.describe Market do
           expect(@market.total_inventory).to include(expected)
 
           expect(@market.overstocked_items).to eq([@item1])
-        end
-
+    end
 end

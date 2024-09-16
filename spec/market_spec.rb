@@ -31,4 +31,13 @@ RSpec.describe Market do
     @market.add_vendor(@vendor3)
     expect(@market.vendors.count).to eq(3)
   end
+
+  it 'has vendors' do
+    expect(@market.vendor_names).to eq([])
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    expect(@market.vendor_names.length).to eq(3)
+    # binding.pry
+  end
 end

@@ -13,6 +13,7 @@ class Market
 
   def vendor_names
     # todo
+    @vendors
   end
 
   def vendors_that_sell(item)

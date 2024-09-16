@@ -13,7 +13,6 @@ class Market
     end
     
     def vendor_names
-        
+        @vendors.map(&:name)
     end
-    
 end

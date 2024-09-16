@@ -27,4 +27,28 @@ RSpec.describe Market do
         expect(@item3.name).to eq("Peach-Raspberry Nice Cream")
         expect(@item4.name).to eq("Banana Nice Cream")
     end
+
+    it 'can create an array of vendors and return their names' do
+        @market.add_vendor(@vendor1)
+        @market.add_vendor(@vendor2)
+        @market.add_vendor(@vendor3)
+
+        expect(@market.vendors.length).to eq(3)
+        expect(@market.vendor_names).to eq(["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"])
+    end
+
+    it 'can find vendors that sell an item' do
+        @market.add_vendor(@vendor1)
+        @market.add_vendor(@vendor2)
+        @market.add_vendor(@vendor3)
+        
+        @vendor1.stock(@item1, 35)
+        @vendor1.stock(@item2, 7)
+        @vendor2.stock(@item4, 50)
+        @vendor2.stock(@item3, 25)
+        @vendor3.stock(@item1, 65)
+
+        expect(@market.vendors_that_sell(@item1).length).to eq(2)
+        expect(@market.vendors_that_sell(@item4).length).to eq(1)
+    end
 end

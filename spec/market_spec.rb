@@ -38,5 +38,16 @@ RSpec.describe Market do
     it 'can list vendor name' do
       expect(@market.vendor_names).to eq (["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"])
     end
+
+    it 'can list vendors that sell' do
+      @vendor1.stock(@item1, 35)   
+      @vendor1.stock(@item2, 7)
+      @vendor2.stock(@item4, 50)
+      @vendor2.stock(@item3, 25)
+      @vendor3.stock(@item1, 65)  
+
+      expect(@market.vendors_that_sell(@item1)).to match_array([@vendor1, @vendor3])
+      expect(@market.vendors_that_sell(@item4)).to match_array([@vendor2])
+    end
   end
 end

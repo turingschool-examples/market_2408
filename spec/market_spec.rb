@@ -65,4 +65,24 @@ RSpec.describe Market do
         end
     end
 
+    describe "#sorted_item_list" do
+        it 'can provide a list alphabetically with no duplicates' do
+            @market.add_vendor(@vendor1)
+            @market.add_vendor(@vendor2)
+            @market.add_vendor(@vendor3)
+
+            expect(@market.sorted_item_list).to eq(["Banana Nice Cream","Peach", "Peach-Raspberry Nice Cream","Tomato"])
+        end
+    end
+
+    describe "#overstocked_items" do
+        it 'can give an array of overstocked items' do
+            @market.add_vendor(@vendor1)
+            @market.add_vendor(@vendor2)
+            @market.add_vendor(@vendor3)
+
+            expect(@market.overstocked_items).to eq([@item1])
+        end
+    end
+
 end

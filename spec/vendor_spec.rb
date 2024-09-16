@@ -11,3 +11,8 @@ RSpec.describe Item do
         expect(@vendor1).to be_an_instance_of(Vendor)
         expect(@vendor2).to be_an_instance_of(Vendor)
     end
+
+    it '#has a name' do
+        expect(@vendor1.name).to eq ("Rocky Mountain Fresh")
+        expect(@vendor2.name).to eq ("Sysco Systems")
+    end

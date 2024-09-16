@@ -1,12 +1,15 @@
 class Market
-
-    attr_reader :name
+require 'date'
+    
+    attr_reader :name,
+                :date
 
     attr_accessor :vendors
 
     def initialize(name)
         @name = name
         @vendors = []
+        @date = Date.today.strftime('%Y/%m/%d')
     end
 
     def add_vendor(vendor_object)
@@ -64,5 +67,14 @@ class Market
             end
         end
         overstocked_items
+    end
+
+    def sell(item, quantity)
+        if total_inventory[item] && total_inventory[item][:quantity] >= quantity
+            total_inventory[item][:quantity] -= quantity 
+            true
+        else
+            false
+        end
     end
 end

@@ -24,6 +24,10 @@ RSpec.describe Market do
             expect(@market.name).to eq("South Pearl Street Farmers Market")
         end
 
+        it 'has a date' do
+            expect(@market.date).to eq("2024/09/16")
+        end
+
         it 'starts with an empty array of vendors' do
             expect(@market.vendors).to eq([])
         end
@@ -101,6 +105,11 @@ RSpec.describe Market do
             @vendor1.stock(@item4, 75)
 
             expect(@market.overstocked_items).to eq([@item1, @item4])
+        end
+
+        it 'indicates if it has insufficient stock' do
+            expect(@market.sell(@item2, 10)).to eq(false)
+            expect(@market.sell(@item1, 10)).to eq(true)
         end
 
     end

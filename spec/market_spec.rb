@@ -100,4 +100,15 @@ RSpec.describe Market do
     end
   end
 
+  describe '#date' do
+  it 'has a date' do
+    expect(@market1.date).to eq(Date.today.strftime('%d/%m/%Y'))
+  end
+
+    it 'can have a date in the past a future' do
+      # allow(@market3).to receive(:initialize).and_return(:)
+    end
+  end
+
+
 end

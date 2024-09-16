@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSspec.describe Market do
+RSpec.describe Market do
   before(:each) do
     @peach = Item.new({name: 'Peach', price: "$0.75"})
     @tomato = Item.new({name: 'Tomato', price: '$0.50'})

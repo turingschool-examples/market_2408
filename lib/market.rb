@@ -1,7 +1,7 @@
 class Market
 
     attr_reader :name, :vendors
-    attr_accessor :potential_revenue
+    attr_accessor :sorted_item_list
 
     def initialize(name)
         @name = name
@@ -23,5 +23,13 @@ class Market
           vendor.check_stock(item) > 0 
     end
 end
-    
+
+    def sorted_item_list
+        all_item_names = vendors.flat_map do |vendor|
+            vendor.inventory.keys.map(&:name)  
+    end
+        all_item_names.uniq.sort  
+    end
+
+    def 
 end

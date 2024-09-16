@@ -1,8 +1,7 @@
 class Vendor
-  attr_reader :name, :price
+  attr_reader :name
 
-  def initialize(item_info)
-    @name = item_info[:name]
-    @price = item_info[:price]
+  def initialize(name)
+    @name = name
   end
 end

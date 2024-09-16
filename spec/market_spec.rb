@@ -49,7 +49,7 @@ RSpec.describe Market do
         expect(@market.vendors_that_sell(@item1)).to eq([@vendor1, @vendor3])
     end
 
-    it 'can determine revenue' do
+    it 'can determine total inventory' do
         @vendor1.stock(@item1, 35)
         @vendor1.stock(@item2, 7)
         @vendor2.stock(@item4, 50)
@@ -59,9 +59,28 @@ RSpec.describe Market do
         @market.add_vendor(@vendor1)
         @market.add_vendor(@vendor2)
         @market.add_vendor(@vendor3)
-        
-        expect(@vendor1.potential_revenue).to eq(29.75)
-        expect(@vendor2.potential_revenue).to eq(345.00)
-        expect(@vendor3.potential_revenue).to eq(48.75)
+
+        expected_inventory = {
+            @item1 => 100,  
+            @item2 => 7,    
+            @item3 => 25,   
+            @item4 => 50
+        }
+
+        expect(@market.total_inventory).to eq(expected_inventory)
+    end
+
+    it 'can determine overstocked items' do
+        @vendor1.stock(@item1, 35)
+        @vendor1.stock(@item2, 7)
+        @vendor2.stock(@item4, 50)
+        @vendor2.stock(@item3, 25)
+        @vendor3.stock(@item1, 65)
+
+        @market.add_vendor(@vendor1)
+        @market.add_vendor(@vendor2)
+        @market.add_vendor(@vendor3)
+
+        expect(@market.over_stocked_items).to eq([@item1])
     end
 end

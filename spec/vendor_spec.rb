@@ -38,4 +38,9 @@ RSpec.describe Vendor do
       expect(@vendor.inventory.count).to eq(2)
     end
   end
+
+  it 'can calculate potential revenue' do
+    @vendor.stock(@item1, 30)
+    expect(@vendor.potential_revenue).to eq('22.50')
+  end
 end

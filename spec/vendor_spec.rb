@@ -24,20 +24,19 @@ RSpec.describe Vendor do
 
     it 'can check the stock of an item' do
 
-        expect(@vendor.check_stock(item1)).to eq(0)
+        expect(@vendor.check_stock(@item1)).to eq(0)
     end
 
-    it 'can stock and item' do
+    it 'can stock items' do
         @vendor.stock(@item1, 30)
 
         expect(@vendor.inventory).to include(@item1)
         expect(@vendor.check_stock(@item1)).to eq(30)
-    end
 
-    it 'can stock more items' do
         @vendor.stock(@item1, 25)
 
         expect(@vendor.check_stock(@item1)).to eq(55)
-
     end
+
+   
 end

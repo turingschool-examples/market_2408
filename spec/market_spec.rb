@@ -15,9 +15,13 @@ RSpec.describe Market do
 
         @vendor1.stock(@item1, 35)
         @vendor1.stock(@item2, 7)
+
         @vendor2.stock(@item4, 50)
         @vendor2.stock(@item3, 25)
+
         @vendor3.stock(@item1, 65)
+        @vendor3.stock(@item3, 10)
+
     end
 
     it 'exists and has attributes' do
@@ -51,7 +55,14 @@ RSpec.describe Market do
     it "calculates potential_revenue" do
         expect(@vendor1.potential_revenue).to eq(29.75)
         expect(@vendor2.potential_revenue).to eq(345.00)
-        expect(@vendor3.potential_revenue).to eq(48.75)
+        expect(@vendor3.potential_revenue).to eq(101.75)
+    end
+
+    it 'returns a sorted list of items' do
+        @market.add_vendor(@vendor1)
+        @market.add_vendor(@vendor2)
+        @market.add_vendor(@vendor3)
+        expect(@market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
     end
 end
 

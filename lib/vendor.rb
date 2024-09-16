@@ -1,28 +1,24 @@
-require './lib/item'
+require_relative './item'
 
 class Vendor
-  attr_reader :name, :stock_count
+  attr_reader :name, :inventory
 
   def initialize(name)
     @name = name
-    @stock_count = 0
-  end
-
-  def inventory
-    {}
+    @inventory = {}
   end
 
   def check_stock(item)
-    @stock_count
+    @inventory[item] || 0
   end
 
+
   def stock(item, amount)
-    @stock_count =+ amount
+    @inventory[item] = check_stock(item) + amount
   end
 
 end
 
 
-# @item1 = Item.new({name: 'Peach', price: "$0.75"})
-# @item2 = Item.new({name: 'Tomato', price: '$0.50'})
-# inventory = {@item1 => amount}
+
+

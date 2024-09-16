@@ -55,4 +55,22 @@ RSpec.describe Vendor do
       expect(@vendor1.inventory).to eq({@peach => 30, @tomato => 25})
     end
   end
+
+  describe '#check_stock' do
+    it 'can check stock default 0' do
+      expect(@vendor1.check_stock(@peach)).to eq(0)
+    end
+
+    it 'can return stock of items' do
+      @vendor1.stock(@peach, 30)
+      expect(@vendor1.check_stock(@peach)).to eq(30)
+    end
+
+    it 'can check treh stock if the stock increases' do
+      @vendor1.stock(@peach, 30)
+      expect(@vendor1.check_stock(@peach)).to eq(30)
+      @vendor1.stock(@peach, 25)
+      expect(@vendor1.check_stock(@peach)).to eq(55)
+    end
+  end
 end

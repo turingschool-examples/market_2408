@@ -24,5 +24,7 @@ class Vendor
             0
         end
     end
-
+    
+    def potential_revenue
+        
 end

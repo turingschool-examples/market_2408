@@ -22,6 +22,11 @@ RSpec.describe Market do
 
   describe '#vendors with inventory' do
     before(:each) do
+      @vendor1.stock(@item1, 35)
+      @vendor1.stock(@item2, 9)
+      @vendor3.stock(@item3, 13)
+      @vendor2.stock(@item4, 50)
+      @vendor3.stock(@item1, 65)      
       @market.add_vendor(@vendor1)
       @market.add_vendor(@vendor2)
       @market.add_vendor(@vendor3)
@@ -35,27 +40,24 @@ RSpec.describe Market do
       expect(@market.vendor_names).to eq (["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"])
     end
 
-    it 'knows which vendors sell which items' do
-      @vendor1.stock(@item1, 30)
-      @vendor2.stock(@item4, 50)
-      @vendor3.stock(@item1, 20)
+    it 'knows which vendors sell which items' do      
       expect(@market.vendors_that_sell(@item1)).to eq([@vendor1, @vendor3])
       expect(@market.vendors_that_sell(@item4)).to eq([@vendor2])
     end
-  end
-
-  describe '#sorted items' do  
+   
     it 'return a sorted list of unique items' do
-      @vendor1.stock(@item1, 35)
-      @vendor1.stock(@item2, 7)
-      @vendor2.stock(@item4, 50)
-      @vendor3.stock(@item1, 65)
-      @vendor3.stock(@item3, 10)
-      @market.add_vendor(@vendor1)
-      @market.add_vendor(@vendor2)
-      @market.add_vendor(@vendor3)
-      
       expect(@market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
     end
+
+    it 'knows total market inventory' do
+      actual_inventory{
+        @item1 => { quantity: 100, vendors: [@vendor1, @vendor3] },
+        @item2 => { quantity: 9, vendors: [@vendor1] },
+        @item3 => { quantity: 13, vendors: [@vendor3] },
+        @item4 => { quantity: 50, vendors: [@vendor2] }
+      }
+      expect(@market.total_inventory).to eq(actual_inventory)
   end
+
+
 end

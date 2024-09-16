@@ -11,4 +11,11 @@ RSpec.describe Item do
         @item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
     end
 
-    
+    it '#exists' do 
+        expect(@market).to be_an_instance_of(Market)
+    end
+
+    it '#has a name' do
+        expect(@market.name).to eq ("South Pearl Street Farmers Market")
+    end
+end

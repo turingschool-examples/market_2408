@@ -35,3 +35,10 @@ RSpec.describe Item do
         expect(@vendor1.check_stock(@item1)).to eq(55)
         expect(@vendor2.check_stock(@item1)).to eq(0)
     end
+
+    it '#can have items in inventory' do
+        @vendor1.stock(@item1, 25)
+        @vendor1.stock(@item2, 25)
+        expect(@vendor1.inventory).to eq({item1 => 55 , item2 => 12})
+    end
+end

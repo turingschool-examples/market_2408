@@ -29,14 +29,43 @@ class Market
     end
   end
 
-  def revenue_by_item
-    price = item.price
-    amount = vendor.inventory.value
-    price * amount
+  def sorted_item_list
+    items = [].flatten
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, amount|
+        items << item.name
+      end
+    end
+    sorted_items = items.uniq.sort
+    sorted_items
   end
 
-  def potential_revenue
-    price = item.price
-    amount = vendor.inventory.value
+  def get_item_quantity(item)
+    total = 0
+
+    vendors_that_sell(item).each do |vendor|
+      total += vendor.check_stock(item)
+    end
+      total
+  end 
+
+  def total_inventory
+    # We will be returning a hash
+    # Each key will be an Item object (must be unique)
+    # Each value is a hash
+      # Within the hash there is an amount: total amaount of the item at the market
+      # vendors: all the vendors that sell this item 
+    # require'pry';binding.pry
+
+      inventory = {}
+        @vendors.each do |vendor|
+          vendor.inventory.each do |item, amount|
+          inventory[item] = {
+            amount: get_item_quantity(item),
+            vendors: vendors_that_sell(item)
+          }
+          end
+        end
+      inventory
   end
 end
